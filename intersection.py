@@ -8,11 +8,7 @@ class Intersection:
         self.ingoing_streets = []
         self.outgoing_streets = []
         queue_in_street = {}
-<<<<<<< HEAD
-        self.scheduler = {}
-=======
         self.scheduler = Scheduler()
->>>>>>> cf8413fe0fe9f80b7c854dab10a377c7eb167d06
 
 
 
