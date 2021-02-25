@@ -28,7 +28,7 @@ class Intersection:
 
     def calculate_scheduler(self):
         self.scheduler = Scheduler(self.ingoing_streets)
-        return self.scheduler.very_stupid_schedule()
+        return self.scheduler.calculate_according_to_total_cars()
 
     def __str__(self):
         out_str = '--------------------------\n'

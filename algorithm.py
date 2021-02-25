@@ -19,11 +19,11 @@ class UltimateSolver:
             if all_intersections[intersection1] is None:
                 all_intersections[intersection1] = Intersection(intersection1)
             else:
-                all_intersections[intersection1].add_outgoing_street(street.name)
+                all_intersections[intersection1].add_outgoing_street(street)
             if all_intersections[intersection2] is None:
                 all_intersections[intersection2] = Intersection(intersection2)
             else:
-                all_intersections[intersection2].add_ingoing_street(street.name)
+                all_intersections[intersection2].add_ingoing_street(street)
 
         result = {}
         for intersection in all_intersections:
