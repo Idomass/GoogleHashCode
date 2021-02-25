@@ -3,8 +3,7 @@ from street import Street
 
 class Car():
     def __init__(self, path_len: int, path: List[Street]):
-        self.start_street = start_street
-        self.current_street = start_street
+        self.current_street = path[0]
         self.current_street_index = 0
         self.next_street = path[1]
         self.next_street_index = 1
