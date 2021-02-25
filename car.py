@@ -1,5 +1,6 @@
 from typing import List
 from street import Street
+from intersection import Intersection
 
 class Car():
     def __init__(self, path_len: int, path: List[Street]):
@@ -9,6 +10,7 @@ class Car():
         self.next_street_index = 1
         self.path_len = path_len
         self.path = path
+        self.queued_at_inter = None
 
         self.total_time = 0
 
@@ -28,6 +30,9 @@ class Car():
         self.next_street = self.path[self.next_street_index]
 
         self.remaining_time = self.remaining_time - self.current_street.length
+
+    def queue_at(self, inter: Intersection):
+        self.queued_at_inter = inter
 
         
 
