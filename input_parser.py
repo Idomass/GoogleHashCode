@@ -34,7 +34,7 @@ def get_street_object_from_name(streets, street_name):
 def get_street_id_from_name(streets, streets_name):
         index = 0
         for street in streets:
-            if street.name == street_name:
+            if street.name == streets_name:
                 return index
             index+= 1
 
@@ -47,7 +47,7 @@ def handle_input(data_file):
     streets = []
     for street in data_lines[1:meta_data.streets_number + 1]:
         split_street = street.split()
-        streets.append(Street(Intersection(int(split_street[0])), Intersection(int(split_street[1])), split_street[2], int(split_street[3])))
+        streets.append(Street(int(split_street[0]), int(split_street[1]), split_street[2], int(split_street[3])))
 
     cars = []
     for car in data_lines[meta_data.streets_number + 1: meta_data.streets_number + meta_data.cars_number + 1]:
@@ -56,7 +56,7 @@ def handle_input(data_file):
         for street in split_car[1:]:
             street_id = get_street_id_from_name(streets, street)
             path.append(get_street_object_from_name(streets, street))
-            streets[street_id].total_cars_numbers += 1 # update a car added to this street
+            streets[street_id].total_cars_number += 1 # update a car added to this street
 
         cars.append(Car(int(split_car[0]), path))
 

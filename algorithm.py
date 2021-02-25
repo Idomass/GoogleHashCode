@@ -13,17 +13,17 @@ class UltimateSolver:
 
     def solve(self):
         all_intersections = [None] * self.meta_data.intersections_number
-        for street in streets:
+        for street in self.streets:
             intersection1 = street.start_intersection
             intersection2 = street.end_intersection
-            if all_intersections[intersection1.id] is None:
-                all_intersections[intersection1.id] = intersection1
+            if all_intersections[intersection1] is None:
+                all_intersections[intersection1] = Intersection(intersection1)
             else:
-                all_intersections[intersection1.id].add_outgoing_street(street.name)
-            if all_intersections[intersection2.id] is None:
-                all_intersections[intersection2.id] = intersection2
+                all_intersections[intersection1].add_outgoing_street(street.name)
+            if all_intersections[intersection2] is None:
+                all_intersections[intersection2] = Intersection(intersection2)
             else:
-                all_intersections[intersection2.id].add_ingoing_street(street.name)
+                all_intersections[intersection2].add_ingoing_street(street.name)
 
         result = {}
         for intersection in all_intersections:

@@ -1,16 +1,10 @@
-from intersection import Intersection
-
 class Street:
-    def __init__(self, intersection1: Intersection, intersection2: Intersection, name: str, length: int):
+    def __init__(self, intersection1: int, intersection2: int, name: str, length: int):
         self.name = name
         self.length = length
 
         self.start_intersection = intersection1
         self.end_intersection = intersection2
-
-        self.start_intersection.add_outgoing_street(self.name)
-        self.end_intersection.add_ingoing_street(self.name)
-
 
         self.total_cars_number = 0
 
@@ -24,13 +18,3 @@ class Street:
         out_str += '--------------------------\n'
 
         return out_str
-
-if __name__ == '__main__':
-    a = Intersection(1)
-    b = Intersection(2)
-    c = Intersection(3)
-
-    street = Street(a, b, 'Bruh', 3)
-    street2 = Street(b, c, "Eli eildis blvd.", 6)
-    print(street)
-    print(street2)

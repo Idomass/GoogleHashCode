@@ -1,6 +1,5 @@
 from typing import List
 from street import Street
-from intersection import Intersection
 
 class Car():
     def __init__(self, path_len: int, path: List[Street]):
@@ -25,13 +24,5 @@ class Car():
             if self.distance_left == 0:
                 self.driving = False
                 self.queued = True
-
-    def queue_at(self, inter: Intersection):
-        self.queued_at_inter = inter
-
-        
-
-
-        
 
 

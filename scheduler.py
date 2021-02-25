@@ -9,8 +9,8 @@ class Scheduler:
 	def __init__(self, ingoing_streets : List[Street]):
 		self.ingoing_streets = ingoing_streets
 
-	def very_stupid_schedule():
-		return [(street.name, 2) for street in self.ingoing_streets]
+	def very_stupid_schedule(self):
+		return [(street, 1) for street in self.ingoing_streets]
 
 	def calculate_according_to_total_cars(self):
 		total_cars_in_scheduler = 0
