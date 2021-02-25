@@ -7,9 +7,10 @@ def create_submittion(scheds_list: Dict[int, tuple]):
     with open("solution.txt", 'x') as f:
         f.write(len(sched_list), "\n")
         for intersection, sched in scheds,items():
-            f.write(intersection)
+            f.write(intersection, "\n")
             f.write(len(sched), "\n")
-            f.write()
+            for street in sched:
+                f.write(street[0], " ", street[1])
 
 
 
