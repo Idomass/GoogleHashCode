@@ -1,10 +1,12 @@
 from car import Car
 from street import Street
+from input_parser import MetaData
 from typing import List
 from scheduler import Scheduler
 
 class UltimateSolver:
-    def __init__(self, streets: List[Street], cars: List[Car]):
+    def __init__(self, meta_data: MetaData, streets: List[Street], cars: List[Car]):
+        self.meta_data = meta_data
         self.streets = streets
         self.cars = cars
 
