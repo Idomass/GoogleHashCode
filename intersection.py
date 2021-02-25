@@ -1,4 +1,5 @@
 from street import Street
+from scheduler import Scheduler
 
 class Intersection:
     def __init__(self, id):
@@ -7,6 +8,9 @@ class Intersection:
         self.ingoing_streets = []
         self.outgoing_streets = []
         queue_in_street = {}
+        self.scheduler = Scheduler()
+
+
 
     def add_ingoing_street(self, street_name: Street):
         self.ingoing_streets.append(street_name)
@@ -22,6 +26,10 @@ class Intersection:
                 queue_in_street[car.path[car.current_street_index].street_name].append(car)
             else:
                 queue_in_street[car.path[car.current_street_index].street_name] = [car]
+
+    def calculate_scheduler():
+    	self.scheduler.add_ingoing_streets(self.ingoing_streets)
+    	self.scheduler.calculate()
 
     def __str__(self):
         out_str = '--------------------------\n'
