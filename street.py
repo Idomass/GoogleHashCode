@@ -5,11 +5,11 @@ class Street:
         self.name = name
         self.length = length
 
-        self.ingoing_intersection = intersection1
-        self.outgoing_intersection = intersection2
+        self.start_intersection = intersection1
+        self.end_intersection = intersection2
 
-        self.ingoing_intersection.add_ingoing_street(self.name)
-        self.outgoing_intersection.add_outgoing_street(self.name)
+        self.start_intersection.add_outgoing_street(self.name)
+        self.end_intersection.add_ingoing_street(self.name)
 
 
         self.total_cars_number = 0
@@ -19,8 +19,8 @@ class Street:
         out_str += 'Street Object:\n'
         out_str += 'Name: ' + self.name + '\n'
         out_str += 'Length: ' + str(self.length) + '\n'
-        out_str += 'Ingoing intersection:\n' + str(self.ingoing_intersection)
-        out_str += 'outgoing intersection:\n' + str(self.outgoing_intersection)
+        out_str += 'Ingoing intersection:\n' + str(self.start_intersection)
+        out_str += 'outgoing intersection:\n' + str(self.end_intersection)
         out_str += '--------------------------\n'
 
         return out_str

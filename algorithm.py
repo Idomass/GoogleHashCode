@@ -3,6 +3,7 @@ from street import Street
 from input_parser import MetaData
 from typing import List
 from scheduler import Scheduler
+from intersection import Intersection
 
 class UltimateSolver:
     def __init__(self, meta_data: MetaData, streets: List[Street], cars: List[Car]):
@@ -11,10 +12,24 @@ class UltimateSolver:
         self.cars = cars
 
     def solve(self):
-        scheduler = self.create_scheduler()
+        all_intersections = [None] * self.meta_data.intersections_number
+        for street in streets:
+            intersection1 = street.start_intersection
+            intersection2 = street.end_intersection
+            if all_intersections[intersection1.id] is None:
+                all_intersections[intersection1.id] = intersection1
+            else:
+                all_intersections[intersection1.id].add_outgoing_street(street.name)
+            if all_intersections[intersection2.id] is None:
+                all_intersections[intersection2.id] = intersection2
+            else:
+                all_intersections[intersection2.id].add_ingoing_street(street.name)
 
-        print('Scheduler ->', scheduler)
-        scheduler.serialize('solution.txt')
+        result = {}
+        for intersection in all_intersections:
+            result[intersection.id] = intersection.calculate_scheduler()
+
+        return result
 
     def __str__(self):
         out_str = 'Solver:'
