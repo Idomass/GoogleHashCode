@@ -1,13 +1,13 @@
 #!/bin/env/python
-
-scheduler_list_example = [("ben guryon street", 2), ("shderot yerushalim street", 3)]
+from typing import List
+from street import Street
 
 class scheduler:
 	# this clase is used for every intersection.
 	# list of incoming start + time
 
-	def __init__(scheduler_list):
-		self.scheduler_list = scheduler_list
+	def __init__(self, ingoing_streets : List[Street]):
+		self.ingoing_streets = ingoing_streets
 
 	def add_street(street, duration):
 		for street_name, duration in self.scheduler_list:
