@@ -10,7 +10,7 @@ def create_submittion(scheds_list: Dict[int, tuple]):
             f.write(intersection, "\n")
             f.write(len(sched), "\n")
             for street in sched:
-                f.write(street[0], " ", street[1])
+                f.write(street[0], " ", street[1], "\n")
 
 
 
