@@ -16,9 +16,21 @@ class Car():
         for street in path:
             self.total_time = self.total_time + street.length
 
-    def cross_street():
-        self.current_street = self.path[self.current_street + 1]
-        self.next_street = 
+        self.remaining_time = self.total_time
+
+    def __str__(self):
+        return ("car: with path: {}, now at {}".format(self.path, self.current_street))
+
+    def cross_next_street():
+        self.current_street_index = self.current_street_index + 1
+        self.current_street = self.next_street
+
+        self.next_street_index = self.next_street_index + 1
+        self.next_street = self.path[self.next_street_index]
+
+        self.remaining_time = self.remaining_time - self.current_street.length
+
+        
 
 
         
