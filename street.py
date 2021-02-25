@@ -11,6 +11,9 @@ class Street:
         self.ingoing_intersection.add_ingoing_street(self.name)
         self.outgoing_intersection.add_outgoing_street(self.name)
 
+
+        self.total_cars_number = 0
+
     def __str__(self):
         out_str = '--------------------------\n'
         out_str += 'Street Object:\n'

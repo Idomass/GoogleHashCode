@@ -31,6 +31,12 @@ def get_street_object_from_name(streets, street_name):
     for street in streets:
         if street.name == street_name:
             return street
+def get_street_id_from_name(streets, streets_name):
+        index = 0
+        for street in streets:
+            if street.name == street_name:
+                return index
+            index+= 1
 
 def handle_input(data_file):
     with open(data_file) as data:
@@ -48,7 +54,10 @@ def handle_input(data_file):
         split_car = car.split()
         path = []
         for street in split_car[1:]:
+            street_id = get_street_id_from_name(streets, street)
             path.append(get_street_object_from_name(streets, street))
+            streets[street_id].total_cars_numbers += 1 # update a car added to this street
+
         cars.append(Car(int(split_car[0]), path))
 
     return meta_data, streets, cars
