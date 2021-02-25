@@ -48,7 +48,7 @@ def handle_input(data_file):
         split_car = car.split()
         path = []
         for street in split_car[1:]:
-            path.append(get_street_object_from_name(street))
+            path.append(get_street_object_from_name(streets, street))
         cars.append(Car(int(split_car[0]), path))
 
     return meta_data, streets, cars
