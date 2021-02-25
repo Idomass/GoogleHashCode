@@ -56,7 +56,12 @@ def handle_input(data_file):
 def main():
     args = get_args()
     meta_data, streets, cars = handle_input(args.file_name)
+    print('All information is:')
     print(meta_data)
+    for street in streets:
+        print(street)
+    for car in cars:
+        print(car)
 
 if __name__ == '__main__':
     main()
