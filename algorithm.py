@@ -13,18 +13,20 @@ class UltimateSolver:
 
     def solve(self):
         all_intersections = [None] * self.meta_data.intersections_number
+
         for street in self.streets:
             intersection1 = street.start_intersection
             intersection2 = street.end_intersection
             if all_intersections[intersection1] is None:
                 all_intersections[intersection1] = Intersection(intersection1)
+                all_intersections[intersection1].add_outgoing_street(street)
             else:
                 all_intersections[intersection1].add_outgoing_street(street)
             if all_intersections[intersection2] is None:
                 all_intersections[intersection2] = Intersection(intersection2)
+                all_intersections[intersection2].add_ingoing_street(street)
             else:
                 all_intersections[intersection2].add_ingoing_street(street)
-
         result = {}
         for intersection in all_intersections:
             result[intersection.id] = intersection.calculate_scheduler()
