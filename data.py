@@ -25,7 +25,10 @@ class GlobalData:
     def __str__():
         out_str = 'GLOBAL DATA\n'
         out_str += f'{GlobalData.meta_data}\n'
-        out_str += 'Cars:\n'
+        out_str += 'Intersections:\n'
+        for intersection in GlobalData.intersections.values():
+            out_str += '       '.join(str(intersection).splitlines(True)) + '\n'
+        out_str += '    Cars:\n'
         for car in GlobalData.cars:
-            out_str += '   '.join(str(car).splitlines(True)) + '\n'
+            out_str += '    '.join(str(car).splitlines(True)) + '\n'
         return out_str

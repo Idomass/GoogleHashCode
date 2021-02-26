@@ -3,6 +3,7 @@ from argparse import ArgumentParser
 from street import Street
 from car import Car
 from data import GlobalData, MetaData
+from algorithm import silly_algorithm
 
 
 def parse_file(file):
@@ -15,8 +16,7 @@ def parse_file(file):
     for car_num in range(GlobalData.meta_data.cars):
         GlobalData.cars.append(Car(*file.readline().split()))
 
-    for inter in GlobalData.intersections.values():
-        print(inter)
+    silly_algorithm()
 
 if __name__ == '__main__':
     parser = ArgumentParser('GoogleHashCode solver')
