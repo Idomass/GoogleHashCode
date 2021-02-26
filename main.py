@@ -1,5 +1,6 @@
 #! /usr/bin/env python3
 from argparse import ArgumentParser
+from street import Street
 
 class MetaData:
     def __init__(self, duration: str, intersections: str, streets: str, cars: str, bonus: str):
@@ -29,6 +30,8 @@ class GlobalData:
 def parse_file(file):
     GlobalData.meta_data = MetaData(*file.readline().split())
 
+    for street_num in range(GlobalData.meta_data.streets):
+        GlobalData.streets.append(Street(*file.readline().split()))
 
 if __name__ == '__main__':
     parser = ArgumentParser('GoogleHashCode solver')
