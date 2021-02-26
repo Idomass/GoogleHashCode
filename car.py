@@ -1,10 +1,14 @@
 #! /usr/bin/env python3
 from street import Street
+from data import GlobalData
 
 class Car:
-    def __init__(self, path_length: str, *streets: Street):
+    def __init__(self, path_length: str, *streets: str):
         self.path_length = path_length
-        self.streets = streets
+        self.streets = []
+        for street in streets:
+            self.streets.append(GlobalData.streets[street])
+
 
     def __str__(self):
         out_str = 'Car class:\n'

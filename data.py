@@ -19,8 +19,8 @@ class MetaData:
 class GlobalData:
     meta_data = []
     cars = []
-    streets = []
-    intersections = []
+    streets = {}
+    intersections = {}
 
     def __str__():
         out_str = 'GLOBAL DATA\n'
