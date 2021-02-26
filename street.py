@@ -1,5 +1,5 @@
 #! /usr/bin/env python3
-from main import GlobalData
+from data import GlobalData
 
 class Street:
     def __init__(self, intersection1: str, intersection2: str, name: str, length: str):
