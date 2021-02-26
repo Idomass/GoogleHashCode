@@ -30,22 +30,27 @@ class Intersection:
 
 
 class Scheduler:
-    CYCLE_TIME = 15
-
     def __init__(self, intersection: Intersection):
         self.intersection = intersection
 
         self.schdule = {}
         self.total_weight = sum(self.intersection.ingoing_streets.values())
+        self.cycle_time = len(self.intersection.ingoing_streets) * 6
         for street, weight in self.intersection.ingoing_streets.items():
-            if self.total_weight:
-                self.schdule[street] = int((weight/self.total_weight)*Scheduler.CYCLE_TIME)
+            self.schdule[street] = int((weight/self.total_weight)*self.cycle_time)
 
     def __str__(self):
-        if self.total_weight:
-            out_str = f'{self.intersection.id}\n'
-            out_str += f'{len(self.intersection.ingoing_streets)}\n'
-            for street, weight in self.schdule.items():
-                out_str += f'{street} {weight} '
-            return out_str
-        return ''
+        out_str = f'{self.intersection.id}\n'
+
+        total_ingoing = len(self.intersection.ingoing_streets)
+        solve_str = ''
+        for street, weight in self.schdule.items():
+            if weight > GlobalData.meta_data.duration:
+                raise Exception("SHIT")
+            if weight == 0:
+                total_ingoing -= 1
+                continue
+            solve_str += f'{street} {weight}\n'
+        out_str += f'{total_ingoing}\n'
+        out_str += solve_str
+        return out_str

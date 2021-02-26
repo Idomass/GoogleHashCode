@@ -7,8 +7,11 @@ def silly_algorithm():
         for street in car.streets:
             GlobalData.intersections[street.outgoing_intesection].add_weight(street.name)
 
-    print(GlobalData.meta_data)
+    solve = ''
     for intersection in GlobalData.intersections.values():
-        scheduler = str(Scheduler(intersection))
-        if scheduler:
-            print(scheduler)
+        if len(intersection.ingoing_streets) and sum(intersection.ingoing_streets.values()):
+            solve += str(Scheduler(intersection))
+        else:
+            GlobalData.meta_data.intersections -= 1
+    print(GlobalData.meta_data.intersections)
+    print(solve)
