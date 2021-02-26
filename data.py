@@ -21,6 +21,7 @@ class GlobalData:
     cars = []
     streets = {}
     intersections = {}
+    schedulers = {}
 
     def __str__():
         out_str = 'GLOBAL DATA\n'

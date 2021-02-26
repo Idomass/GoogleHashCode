@@ -1,5 +1,6 @@
 #! /usr/bin/env python3
 from data import GlobalData
+import math
 
 class Intersection:
     def __init__(self, id: str):
@@ -8,8 +9,8 @@ class Intersection:
         self.ingoing_streets = {}
         self.outgoing_streets = []
 
-    def add_weight(self, street: str):
-        self.ingoing_streets[street] += 1
+    def add_weight(self, street: str, weight: int):
+        self.ingoing_streets[street] += weight
 
     def add_ingoing_street(self, street: str):
         self.ingoing_streets[street] = 0
@@ -34,13 +35,15 @@ class Scheduler:
         self.intersection = intersection
 
         self.schdule = {}
+        self.calculate_weights()
+
+    def calculate_weights(self):
         self.total_weight = sum(self.intersection.ingoing_streets.values())
-        self.cycle_time = len(self.intersection.ingoing_streets) * 6
         for street, weight in self.intersection.ingoing_streets.items():
-            self.schdule[street] = int((weight/self.total_weight)*self.cycle_time)
+            self.schdule[street] = math.ceil(weight/self.total_weight*1.5)
 
     def calculate_according_to_total_cars(self, intersection: Intersection):
-        total_cars_in_scheduler = 0 
+        total_cars_in_scheduler = 0
         average_seconds_for_street = 3
         my_scheduler = []
         for street in intersection.ingoing_streets:
