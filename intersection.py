@@ -9,14 +9,26 @@ class Intersection:
         self.ingoing_streets = {}
         self.outgoing_streets = []
 
+        # save the counts of cars starting in the street
+        self.ingoing_streets_preferncy = {}
+
     def add_weight(self, street: str, weight: int):
+        # street name, and weight is the number of cars that will be on this street
         self.ingoing_streets[street] += weight
+            
 
     def add_ingoing_street(self, street: str):
         self.ingoing_streets[street] = 0
+        self.ingoing_streets_preferncy[street] = 0
 
     def add_outgoing_street(self, street: str):
         self.outgoing_streets.append(street)
+
+    def add_start_preferncy(self, street: str, street_index: int):
+        # give it kdimut
+        # self.ingoing_streets_preferncy[street] += 3 / (street_index + 1) - street_index*5
+        if street_index == 0:
+            self.ingoing_streets_preferncy[street] += 1
 
     def __str__(self):
         out_str = 'Intersection class:\n'
@@ -40,6 +52,12 @@ class Scheduler:
     def calculate_weights(self):
         self.total_weight = sum(self.intersection.ingoing_streets.values())
         for street, weight in self.intersection.ingoing_streets.items():
+            if weight/self.total_weight > 0.80:
+                # for really specical cases
+                weight = weight*1.7
+            # if weight/self.total_weight < 0.01:
+                # for really specical cases
+                # weight = 0
             self.schdule[street] = math.ceil(weight/self.total_weight*1.5)
 
     def calculate_according_to_total_cars(self, intersection: Intersection):
@@ -67,7 +85,8 @@ class Scheduler:
 
         total_ingoing = len(self.intersection.ingoing_streets)
         solve_str = ''
-        for street, weight in self.schdule.items():
+        for street in sorted(self.intersection.ingoing_streets_preferncy, key=self.intersection.ingoing_streets_preferncy.get, reverse=True):
+            street, weight = street, self.schdule[street]
             if weight > GlobalData.meta_data.duration:
                 raise Exception("SHIT")
             if weight == 0:
